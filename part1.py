@@ -73,3 +73,4 @@ def conv(input, weight):
           The convolution should be along the sequence axis.
           input is of size [batchSize, inputDim, seqLength]
     """
+

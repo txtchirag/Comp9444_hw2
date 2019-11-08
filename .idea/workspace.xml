@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2933a9f0-2992-468b-82fe-529cb3f4782c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/part1.py" beforeDir="false" afterPath="$PROJECT_DIR$/part1.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1TJWl1sd4HAfsoTIbDQgLEmCJWc" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2933a9f0-2992-468b-82fe-529cb3f4782c" name="Default Changelist" comment="" />
+      <created>1573178825011</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1573178825011</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="1">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="structure">
+                    <value>
+                      <list>
+                        <option value="dir:/home/chirag/PycharmProjects/Comp9444_hw2/data" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="OPEN_TABS">
+      <set>
+        <option value="1" />
+      </set>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="570" y="261" width="831" height="582" key="RollbackChangesDialog" timestamp="1573179258043">
+      <screen x="62" y="27" width="1858" height="1053" />
+    </state>
+    <state x="570" y="261" width="831" height="582" key="RollbackChangesDialog/62.27.1858.1053@62.27.1858.1053" timestamp="1573179258043" />
+    <state x="441" y="188" key="SettingsEditor" timestamp="1573181059176">
+      <screen x="62" y="27" width="1858" height="1053" />
+    </state>
+    <state x="441" y="188" key="SettingsEditor/62.27.1858.1053@62.27.1858.1053" timestamp="1573181059176" />
+    <state x="742" y="290" width="487" height="524" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1573179228191">
+      <screen x="62" y="27" width="1858" height="1053" />
+    </state>
+    <state x="742" y="290" width="487" height="524" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog/62.27.1858.1053@62.27.1858.1053" timestamp="1573179228191" />
+  </component>
+</project>
