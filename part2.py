@@ -72,6 +72,13 @@ class NetworkCnn(tnn.Module):
         TODO:
         Create and initialise weights and biases for the layers.
         """
+        self.conv1 = tnn.Conv1d(50, 50, 8, padding=5)
+        self.conv2 = tnn.Conv1d(50, 50, 8, padding=5)
+        self.conv3 = tnn.Conv1d(50, 50, 8, padding=5)
+
+        self.maxpool=tnn.MaxPool1d(kernel_size=4)
+        self.globalmaxpool=tnn.AdaptiveMaxPool1d(1)
+        self.fc1=tnn.Linear(50,1)
 
     def forward(self, input, length):
         """
@@ -79,8 +86,20 @@ class NetworkCnn(tnn.Module):
         TODO:
         Create the forward pass through the network.
         """
+        x=input.permute(0,2,1)
 
+        x=x.view(x.shape[0],50,-1)
 
+        x=tnn.functional.relu(self.conv1(x))
+        x=self.maxpool(x)
+        x=tnn.functional.relu(self.conv2(x))
+        x = self.maxpool(x)
+        x = tnn.functional.relu(self.conv3(x))
+        x =self.globalmaxpool(x)
+        x=self.fc1(x.view(-1, 50))
+        x=x.view(-1)
+
+        return x
 def lossFunc():
     """
     TODO:
@@ -88,7 +107,7 @@ def lossFunc():
     will add a sigmoid to the output and calculate the binary
     cross-entropy.
     """
-
+    return tnn.BCEWithLogitsLoss()
 
 def measures(outputs, labels):
     """
@@ -99,7 +118,19 @@ def measures(outputs, labels):
 
     outputs and labels are torch tensors.
     """
+    TP, TN, FP, FN=0,0,0,0
 
+    val=[0 if item < 0 else 1 for item in outputs]
+    for i in range(len(outputs)):
+        if labels[i]==val[i]==1:
+            TP+=1
+        if labels[i] == val[i] == 0:
+            TN+=1
+        if labels[i] != val[i] and val[i]== 1:
+            FP+=1
+        if labels[i] != val[i] and val[i]== 0:
+            FN+=1
+    return TP, TN, FP, FN
 
 def main():
     # Use a GPU if available, as it should be faster.
@@ -119,13 +150,16 @@ def main():
     trainLoader, testLoader = data.BucketIterator.splits((train, dev), shuffle=True, batch_size=64,
                                                          sort_key=lambda x: len(x.text), sort_within_batch=True)
 
+    print(len(dev))
+
     # Create an instance of the network in memory (potentially GPU memory). Can change to NetworkCnn during development.
-    net = NetworkLstm().to(device)
+    #net = NetworkLstm().to(device)
+    net = NetworkCnn().to(device)
 
     criterion = lossFunc()
     optimiser = topti.Adam(net.parameters(), lr=0.001)  # Minimise the loss using the Adam algorithm.
 
-    for epoch in range(10):
+    for epoch in range(3):
         running_loss = 0
 
         for i, batch in enumerate(trainLoader):
@@ -140,7 +174,9 @@ def main():
             optimiser.zero_grad()
 
             # Forward pass through the network.
+            print(len(length))
             output = net(inputs, length)
+
 
             loss = criterion(output, labels)
 

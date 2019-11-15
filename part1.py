@@ -74,3 +74,5 @@ def conv(input, weight):
           input is of size [batchSize, inputDim, seqLength]
     """
 
+    conv1=torch.nn.functional.conv1d(input,weight)
+    return conv1
