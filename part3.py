@@ -13,11 +13,27 @@ class Network(tnn.Module):
     def __init__(self):
         super(Network, self).__init__()
 
+        self.conv1 = tnn.Conv1d(50, 50, 8, padding=5)
+        self.conv2 = tnn.Conv1d(50, 50, 8, padding=5)
+        self.conv3 = tnn.Conv1d(50, 50, 8, padding=5)
+
+        self.maxpool = tnn.MaxPool1d(kernel_size=4)
+        self.globalmaxpool = tnn.AdaptiveMaxPool1d(1)
+        self.fc1 = tnn.Linear(50, 1)
+
     def forward(self, input, length):
         """
         DO NOT MODIFY FUNCTION SIGNATURE
         Create the forward pass through the network.
         """
+        x = input.permute(0, 2, 1)
+        x = x.view(x.shape[0], 50, -1)
+        x = self.maxpool(F.relu(self.conv1(x)))  # Conv -> ReLu -> maxpool(size=4)
+        x = self.maxpool(F.relu(self.conv2(x)))  # Conv -> ReLu -> maxpool(size=4)
+        x = self.globalmaxpool(F.relu(self.conv3(x)))  # Conv -> ReLu -> maxpool over time (global pooling)
+        x = self.fc1(x.view(-1, 50))  # Linear(1)
+        x = x.view(-1)  # flatten
+        return x
 
 
 class PreProcessing():
@@ -37,6 +53,8 @@ def lossFunc():
     Define a loss function appropriate for the above networks that will
     add a sigmoid to the output and calculate the binary cross-entropy.
     """
+    return tnn.BCEWithLogitsLoss()
+
 
 def main():
     # Use a GPU if available, as it should be faster.
@@ -56,10 +74,10 @@ def main():
                                                          sort_key=lambda x: len(x.text), sort_within_batch=True)
 
     net = Network().to(device)
-    criterion =lossFunc()
+    criterion = lossFunc()
     optimiser = topti.Adam(net.parameters(), lr=0.001)  # Minimise the loss using the Adam algorithm.
 
-    for epoch in range(10):
+    for epoch in range(2):
         running_loss = 0
 
         for i, batch in enumerate(trainLoader):
@@ -115,6 +133,7 @@ def main():
     accuracy = 100 * num_correct / len(dev)
 
     print(f"Classification accuracy: {accuracy}")
+
 
 if __name__ == '__main__':
     main()
