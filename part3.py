@@ -25,7 +25,7 @@ class Network(tnn.Module):
         padded_sequence = tnn.utils.rnn.pack_padded_sequence(input, length, batch_first=True)  # padding
         output, x = (hn, cn) = self.lstm(padded_sequence)  # batched 50-d vectorized inputs LSTM(hidden dim = 100)
 
-        x = tnn.functional.relu(self.fc1(x[0]))  # Linear(64) -> ReLu
+        x = tnn.functional.relu(self.fc1(x[0]))  # Linear(64) -> ReLu  ######matmul with ones tensor####
         x = self.fc2(x)  # Linear(1)
         x = x.view(-1)  # flatten
 
