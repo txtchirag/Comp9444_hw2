@@ -13,26 +13,22 @@ class Network(tnn.Module):
     def __init__(self):
         super(Network, self).__init__()
 
-        self.conv1 = tnn.Conv1d(50, 50, 8, padding=5)
-        self.conv2 = tnn.Conv1d(50, 50, 8, padding=5)
-        self.conv3 = tnn.Conv1d(50, 50, 8, padding=5)
-
-        self.maxpool = tnn.MaxPool1d(kernel_size=4)
-        self.globalmaxpool = tnn.AdaptiveMaxPool1d(1)
-        self.fc1 = tnn.Linear(50, 1)
+        self.lstm = tnn.LSTM(input_size=50, hidden_size=100,dropout=0.2,num_layers=2)
+        self.fc1 = tnn.Linear(in_features=100, out_features=64)
+        self.fc2 = tnn.Linear(in_features=64, out_features=1)
 
     def forward(self, input, length):
         """
         DO NOT MODIFY FUNCTION SIGNATURE
         Create the forward pass through the network.
         """
-        x = input.permute(0, 2, 1)
-        x = x.view(x.shape[0], 50, -1)
-        x = self.maxpool(F.relu(self.conv1(x)))  # Conv -> ReLu -> maxpool(size=4)
-        x = self.maxpool(F.relu(self.conv2(x)))  # Conv -> ReLu -> maxpool(size=4)
-        x = self.globalmaxpool(F.relu(self.conv3(x)))  # Conv -> ReLu -> maxpool over time (global pooling)
-        x = self.fc1(x.view(-1, 50))  # Linear(1)
+        padded_sequence = tnn.utils.rnn.pack_padded_sequence(input, length, batch_first=True)  # padding
+        output, x = (hn, cn) = self.lstm(padded_sequence)  # batched 50-d vectorized inputs LSTM(hidden dim = 100)
+
+        x = tnn.functional.relu(self.fc1(x[0]))  # Linear(64) -> ReLu
+        x = self.fc2(x)  # Linear(1)
         x = x.view(-1)  # flatten
+
         return x
 
 
@@ -43,7 +39,7 @@ class PreProcessing():
 
     def post(batch, vocab):
         """Called after numericalization but prior to vectorization"""
-        return batch, vocab
+        return batch
 
     text_field = data.Field(lower=True, include_lengths=True, batch_first=True, preprocessing=pre, postprocessing=post)
 
