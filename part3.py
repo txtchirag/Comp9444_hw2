@@ -8,27 +8,41 @@ from torchtext.vocab import GloVe
 from imdb_dataloader import IMDB
 
 
+
 # Class for creating the neural network.
 class Network(tnn.Module):
     def __init__(self):
         super(Network, self).__init__()
-
-        self.lstm = tnn.LSTM(input_size=50, hidden_size=100,dropout=0.2,num_layers=2)
-        self.fc1 = tnn.Linear(in_features=100, out_features=64)
+        self.hidden_size = 100
+        self.num_layers = 2
+        self.lstm = tnn.LSTM(input_size=50, hidden_size=100,dropout=0.2,num_layers=2, batch_first=True, bidirectional=True)
+        self.fc1 = tnn.Linear(in_features=200, out_features=64)
         self.fc2 = tnn.Linear(in_features=64, out_features=1)
+        self.dropout=torch.nn.Dropout(0.2)
 
     def forward(self, input, length):
         """
         DO NOT MODIFY FUNCTION SIGNATURE
         Create the forward pass through the network.
         """
-        padded_sequence = tnn.utils.rnn.pack_padded_sequence(input, length, batch_first=True)  # padding
-        output, x = (hn, cn) = self.lstm(padded_sequence)  # batched 50-d vectorized inputs LSTM(hidden dim = 100)
+        # Set initial states
+        h0 = torch.zeros(self.num_layers*2, input.size(0), self.hidden_size) # 2 for bidirection
+        c0 = torch.zeros(self.num_layers*2, input.size(0), self.hidden_size)
+        padded_sequence = tnn.utils.rnn.pack_padded_sequence(input, length, batch_first=True)
+        packed_output, _ = self.lstm(padded_sequence,
+                                     (h0, c0))  # out: tensor of shape (batch_size, seq_length, hidden_size*2)
+        # Decode the hidden state of the last time step
+        out, _ = tnn.utils.rnn.pad_packed_sequence(packed_output)
+        out = tnn.functional.relu(self.fc1(out[1]))
 
-        x = tnn.functional.relu(self.fc1(x[0]))  # Linear(64) -> ReLu  ######matmul with ones tensor####
-        x = self.fc2(x)  # Linear(1)
+        # out, _ = self.lstm(input, (h0, c0))  # out: tensor of shape (batch_size, seq_length, hidden_size*2)
+        # Decode the hidden state of the last time step
+        # out = tnn.functional.relu(self.fc1(out[:, -1, :]))
+
+        out = self.dropout(out)
+        x = self.fc2(out)  # Linear(1)
         x = x.view(-1)  # flatten
-
+        #print(x.shape)
         return x
 
 
@@ -54,7 +68,8 @@ def lossFunc():
 
 def main():
     # Use a GPU if available, as it should be faster.
-    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    #device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    device = torch.device("cpu")
     print("Using device: " + str(device))
 
     # Load the training dataset, and create a data loader to generate a batch.
@@ -73,7 +88,7 @@ def main():
     criterion = lossFunc()
     optimiser = topti.Adam(net.parameters(), lr=0.001)  # Minimise the loss using the Adam algorithm.
 
-    for epoch in range(2):
+    for epoch in range(15):
         running_loss = 0
 
         for i, batch in enumerate(trainLoader):
