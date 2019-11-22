@@ -1,11 +1,8 @@
 #!/usr/bin/env python3
 """
 part1.py
-
 UNSW COMP9444 Neural Networks and Deep Learning
-
 ONLY COMPLETE METHODS AND CLASSES MARKED "TODO".
-
 DO NOT MODIFY IMPORTS. DO NOT ADD EXTRA FUNCTIONS.
 DO NOT MODIFY EXISTING FUNCTION SIGNATURES.
 DO NOT IMPORT ADDITIONAL LIBRARIES.
@@ -62,7 +59,6 @@ class rnnSimplified(torch.nn.Module):
 
     def forward(self, input):
         _, hidden = self.net(input)
-
         return hidden
 
 
@@ -71,7 +67,7 @@ def lstm(input, hiddenSize):
     TODO: Let variable lstm be an instance of torch.nn.LSTM.
           Variable input is of size [batchSize, seqLength, inputDim]
     """
-    lstm = torch.nn.LSTM(input_size=input.shape[2], hidden_size=hiddenSize, batch_first=True,)
+    lstm = torch.nn.LSTM(input_size=input.shape[2], hidden_size=hiddenSize, batch_first=True)
     return lstm(input)
 
 
@@ -82,6 +78,5 @@ def conv(input, weight):
           The convolution should be along the sequence axis.
           input is of size [batchSize, inputDim, seqLength]
     """
-
-    conv1 = torch.nn.functional.conv1d(input, weight)
-    return conv1
+    conv_input_weight = torch.nn.functional.conv1d(input, weight)
+    return conv_input_weight
