@@ -18,7 +18,7 @@ class Network(tnn.Module):
         self.lstm = tnn.LSTM(input_size=50, hidden_size=100,dropout=0.2,num_layers=2, batch_first=True, bidirectional=True)
         self.fc1 = tnn.Linear(in_features=200, out_features=64)
         self.fc2 = tnn.Linear(in_features=64, out_features=1)
-        self.dropout=torch.nn.Dropout(0.2)
+        self.dropout=tnn.Dropout(0.2)
 
     def forward(self, input, length):
         """
@@ -33,11 +33,11 @@ class Network(tnn.Module):
                                      (h0, c0))  # out: tensor of shape (batch_size, seq_length, hidden_size*2)
         # Decode the hidden state of the last time step
         out, _ = tnn.utils.rnn.pad_packed_sequence(packed_output)
-        out = tnn.functional.relu(self.fc1(out[1]))
+        out = F.relu(self.fc1(out[1]))
 
         # out, _ = self.lstm(input, (h0, c0))  # out: tensor of shape (batch_size, seq_length, hidden_size*2)
         # Decode the hidden state of the last time step
-        # out = tnn.functional.relu(self.fc1(out[:, -1, :]))
+        # out = F.relu(self.fc1(out[:, -1, :]))
 
         out = self.dropout(out)
         x = self.fc2(out)  # Linear(1)
@@ -68,8 +68,8 @@ def lossFunc():
 
 def main():
     # Use a GPU if available, as it should be faster.
-    #device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-    device = torch.device("cpu")
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    #device = torch.device("cpu")
     print("Using device: " + str(device))
 
     # Load the training dataset, and create a data loader to generate a batch.
