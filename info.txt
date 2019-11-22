@@ -1,0 +1,2 @@
+-- packing and upacking -- https://gist.github.com/Tushar-N/dfca335e370a2bc3bc79876e6270099e 
+-- Reference Code LSTM -- https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/02-intermediate/bidirectional_recurrent_neural_network/main.py 
