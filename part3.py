@@ -16,7 +16,7 @@ class Network(tnn.Module):
         self.hidden_size = 100
         self.num_layers = 2
         self.lstm = tnn.LSTM(input_size=50, hidden_size=100,dropout=0.2,num_layers=2, batch_first=True, bidirectional=True)
-        self.fc1 = tnn.Linear(in_features=200, out_features=64)
+        self.fc1 = tnn.Linear(in_features=100*2, out_features=64) # multiplied by 2 as bidirectional=True
         self.fc2 = tnn.Linear(in_features=64, out_features=1)
         self.dropout=tnn.Dropout(0.2)
 
@@ -26,25 +26,16 @@ class Network(tnn.Module):
         Create the forward pass through the network.
         """
         # Set initial states
-        h0 = torch.zeros(self.num_layers*2, input.size(0), self.hidden_size) # 2 for bidirection
+        h0 = torch.zeros(self.num_layers*2, input.size(0), self.hidden_size) # multiplied by 2 as bidirectional=True
         c0 = torch.zeros(self.num_layers*2, input.size(0), self.hidden_size)
-        padded_sequence = tnn.utils.rnn.pack_padded_sequence(input, length, batch_first=True)
-        packed_output, _ = self.lstm(padded_sequence,
-                                     (h0, c0))  # out: tensor of shape (batch_size, seq_length, hidden_size*2)
-        # Decode the hidden state of the last time step
-        out, _ = tnn.utils.rnn.pad_packed_sequence(packed_output)
-        out = F.relu(self.fc1(out[1]))
-
-        # out, _ = self.lstm(input, (h0, c0))  # out: tensor of shape (batch_size, seq_length, hidden_size*2)
-        # Decode the hidden state of the last time step
-        # out = F.relu(self.fc1(out[:, -1, :]))
-
-        out = self.dropout(out)
-        x = self.fc2(out)  # Linear(1)
+        padded_sequence = tnn.utils.rnn.pack_padded_sequence(input, length, batch_first=True)# padding
+        packed_output, _ = self.lstm(padded_sequence, (h0, c0))  # LSTM layer
+        out, _ = tnn.utils.rnn.pad_packed_sequence(packed_output) # unpacking the output
+        out = F.relu(self.fc1(out[1])) # Passing hidden state of the last time step to fc layer
+        out = self.dropout(out) # dropout layer
+        x = self.fc2(out)  # Fully connected linear layer 2 
         x = x.view(-1)  # flatten
-        #print(x.shape)
         return x
-
 
 class PreProcessing():
     def pre(x):
