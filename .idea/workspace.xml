@@ -2,12 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2933a9f0-2992-468b-82fe-529cb3f4782c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/part3.py" beforeDir="false" afterPath="$PROJECT_DIR$/part3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model.pth" beforeDir="false" afterPath="$PROJECT_DIR$/model.pth" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_cpu.pth" beforeDir="false" afterPath="$PROJECT_DIR$/model_cpu.pth" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -20,7 +30,13 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -35,7 +51,7 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.part3">
-    <configuration name="part1" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="model" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Comp9444_hw2" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -47,7 +63,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/part1.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/model.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -98,11 +114,55 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="part3_hw1" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Comp9444_hw2" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/part3_hw1.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="part_3_LSTM" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Comp9444_hw2" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/part_3_LSTM.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.part3" />
+        <item itemvalue="Python.part_3_LSTM" />
+        <item itemvalue="Python.part3_hw1" />
+        <item itemvalue="Python.model" />
         <item itemvalue="Python.part2" />
-        <item itemvalue="Python.part1" />
       </list>
     </recent_temporary>
   </component>
@@ -166,7 +226,28 @@
       <option name="project" value="LOCAL" />
       <updated>1574315009127</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="updating with lstm code">
+      <created>1574315128826</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1574315128826</updated>
+    </task>
+    <task id="LOCAL-00009" summary="updated with padded">
+      <created>1574396839790</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1574396839790</updated>
+    </task>
+    <task id="LOCAL-00010" summary="updated code with padding and trained model on gpu. Mapped model cpu attached">
+      <created>1574407663786</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1574407663786</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -212,29 +293,35 @@
     <MESSAGE value="part3.py" />
     <MESSAGE value="part3_hw1" />
     <MESSAGE value="updating with lstm code" />
-    <option name="LAST_COMMIT_MESSAGE" value="updating with lstm code" />
+    <MESSAGE value="updated with padded" />
+    <MESSAGE value="updated code with padding and trained model on gpu. Mapped model cpu attached" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated code with padding and trained model on gpu. Mapped model cpu attached" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="588" y="350" width="795" height="404" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1574402182755">
+      <screen x="62" y="27" width="1858" height="1053" />
+    </state>
+    <state x="588" y="350" width="795" height="404" key="#com.intellij.fileTypes.FileTypeChooser/62.27.1858.1053@62.27.1858.1053" timestamp="1574402182755" />
     <state x="734" y="311" key="FileChooserDialogImpl" timestamp="1573189599204">
       <screen x="62" y="27" width="1858" height="1053" />
     </state>
     <state x="734" y="311" key="FileChooserDialogImpl/62.27.1858.1053@62.27.1858.1053" timestamp="1573189599204" />
-    <state width="1831" height="275" key="GridCell.Tab.0.bottom" timestamp="1574314986043">
+    <state width="1831" height="275" key="GridCell.Tab.0.bottom" timestamp="1574522799475">
       <screen x="62" y="27" width="1858" height="1053" />
     </state>
-    <state width="1831" height="275" key="GridCell.Tab.0.bottom/62.27.1858.1053@62.27.1858.1053" timestamp="1574314986043" />
-    <state width="1831" height="275" key="GridCell.Tab.0.center" timestamp="1574314986041">
+    <state width="1831" height="275" key="GridCell.Tab.0.bottom/62.27.1858.1053@62.27.1858.1053" timestamp="1574522799475" />
+    <state width="1831" height="275" key="GridCell.Tab.0.center" timestamp="1574522799474">
       <screen x="62" y="27" width="1858" height="1053" />
     </state>
-    <state width="1831" height="275" key="GridCell.Tab.0.center/62.27.1858.1053@62.27.1858.1053" timestamp="1574314986041" />
-    <state width="1831" height="275" key="GridCell.Tab.0.left" timestamp="1574314986040">
+    <state width="1831" height="275" key="GridCell.Tab.0.center/62.27.1858.1053@62.27.1858.1053" timestamp="1574522799474" />
+    <state width="1831" height="275" key="GridCell.Tab.0.left" timestamp="1574522799473">
       <screen x="62" y="27" width="1858" height="1053" />
     </state>
-    <state width="1831" height="275" key="GridCell.Tab.0.left/62.27.1858.1053@62.27.1858.1053" timestamp="1574314986040" />
-    <state width="1831" height="275" key="GridCell.Tab.0.right" timestamp="1574314986042">
+    <state width="1831" height="275" key="GridCell.Tab.0.left/62.27.1858.1053@62.27.1858.1053" timestamp="1574522799473" />
+    <state width="1831" height="275" key="GridCell.Tab.0.right" timestamp="1574522799475">
       <screen x="62" y="27" width="1858" height="1053" />
     </state>
-    <state width="1831" height="275" key="GridCell.Tab.0.right/62.27.1858.1053@62.27.1858.1053" timestamp="1574314986042" />
+    <state width="1831" height="275" key="GridCell.Tab.0.right/62.27.1858.1053@62.27.1858.1053" timestamp="1574522799474" />
     <state width="1831" height="339" key="GridCell.Tab.1.bottom" timestamp="1573722072358">
       <screen x="62" y="27" width="1858" height="1053" />
     </state>
@@ -263,10 +350,10 @@
       <screen x="62" y="27" width="1858" height="1053" />
     </state>
     <state x="441" y="188" key="SettingsEditor/62.27.1858.1053@62.27.1858.1053" timestamp="1573719107217" />
-    <state x="586" y="289" width="800" height="527" key="Vcs.Push.Dialog.v2" timestamp="1573976962194">
+    <state x="586" y="289" width="800" height="527" key="Vcs.Push.Dialog.v2" timestamp="1574407700981">
       <screen x="62" y="27" width="1858" height="1053" />
     </state>
-    <state x="586" y="289" width="800" height="527" key="Vcs.Push.Dialog.v2/62.27.1858.1053@62.27.1858.1053" timestamp="1573976962194" />
+    <state x="586" y="289" width="800" height="527" key="Vcs.Push.Dialog.v2/62.27.1858.1053@62.27.1858.1053" timestamp="1574407700981" />
     <state width="929" height="526" key="XDebugger.FullValuePopup" timestamp="1573719513261">
       <screen x="62" y="27" width="1858" height="1053" />
     </state>
@@ -279,10 +366,10 @@
       <screen x="62" y="27" width="1858" height="1053" />
     </state>
     <state x="742" y="290" width="487" height="524" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog/62.27.1858.1053@62.27.1858.1053" timestamp="1573189734645" />
-    <state x="591" y="334" width="795" height="433" key="git4idea.merge.GitPullDialog" timestamp="1574314645683">
+    <state x="591" y="334" width="790" height="429" key="git4idea.merge.GitPullDialog" timestamp="1574499719059">
       <screen x="62" y="27" width="1858" height="1053" />
     </state>
-    <state x="591" y="334" width="795" height="433" key="git4idea.merge.GitPullDialog/62.27.1858.1053@62.27.1858.1053" timestamp="1574314645683" />
+    <state x="591" y="334" width="790" height="429" key="git4idea.merge.GitPullDialog/62.27.1858.1053@62.27.1858.1053" timestamp="1574499719059" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
